@@ -1,1 +1,4 @@
-system_files/etc/pki/containers/snow-linux.pub
+-----BEGIN PUBLIC KEY-----
+MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEkPeYtdrr9RFsSEAKyghv31gVpO9P
+LgP7ugDVciscaaXk/e2JCc3MZz0bTIy59Mh/U9RZuePaP1yWLmz7pm82pA==
+-----END PUBLIC KEY-----
