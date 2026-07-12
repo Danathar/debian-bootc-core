@@ -1,5 +1,15 @@
 # debian-bootc-core
 
+> **Note:** This repo was created primarily using directed AI, though its
+> contents have been manually tested and inspected where possible. I
+> believe it's important for anyone using open-source tools on GitHub to
+> have this context before relying on them. This image is still in
+> testing — the goal is a simple, minimal Debian bootc image that's easy
+> to fork and use as-is, not a full desktop distribution. Thanks to the
+> upstream repository
+> [frostyard/debian-bootc-core](https://github.com/frostyard/debian-bootc-core)
+> for the foundational work this was forked from.
+
 A [Debian](https://www.debian.org/) container image preconfigured for
 [bootc](https://github.com/bootc-dev/bootc) usage. This is a forked
 repository — see [Updating Installed Systems From Your
