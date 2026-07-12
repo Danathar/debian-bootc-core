@@ -5,7 +5,8 @@
 > believe it's important for anyone using open-source tools on GitHub to
 > have this context before relying on them. This image is still in
 > testing — the goal is a simple, minimal Debian bootc image that's easy
-> to fork and use as-is, not a full desktop distribution. Thanks to the
+> to fork and use as-is. KDE and GNOME desktop flavors are planned
+> alongside this core image, following the same approach. Thanks to the
 > upstream repository
 > [frostyard/debian-bootc-core](https://github.com/frostyard/debian-bootc-core)
 > for the foundational work this was forked from.
