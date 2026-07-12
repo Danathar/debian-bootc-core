@@ -78,6 +78,40 @@ bootable-image-from-ghcr $base_dir=base_dir $filesystem=filesystem:
             --karg "systemd.log_level=debug" \
             --karg "systemd.journald.forward_to_console=1"
 
+# Build a qcow2 disk image via bootc-image-builder from the local build, injecting accounts from config.toml
+build-disk-image $image_name=image_name:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    mkdir -p output
+    sudo podman run --rm -it --privileged --pull=newer \
+        --security-opt label=type:unconfined_t \
+        -v "$(pwd)/output:/output" \
+        -v "$(pwd)/config.toml:/config.toml:ro" \
+        -v /var/lib/containers/storage:/var/lib/containers/storage \
+        quay.io/centos-bootc/bootc-image-builder:latest \
+        --type qcow2 \
+        --rootfs ext4 \
+        --chown "$(id -u):$(id -g)" \
+        --config /config.toml \
+        "localhost/{{ image_name }}:{{ image_tag }}"
+
+# Same as build-disk-image, but pulls the published image from GHCR instead of a local build
+disk-image-from-ghcr $image_name=image_name:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    mkdir -p output
+    sudo podman run --rm -it --privileged --pull=newer \
+        --security-opt label=type:unconfined_t \
+        -v "$(pwd)/output:/output" \
+        -v "$(pwd)/config.toml:/config.toml:ro" \
+        -v /var/lib/containers/storage:/var/lib/containers/storage \
+        quay.io/centos-bootc/bootc-image-builder:latest \
+        --type qcow2 \
+        --rootfs ext4 \
+        --chown "$(id -u):$(id -g)" \
+        --config /config.toml \
+        "{{ image_repo }}/{{ image_name }}:{{ image_tag }}"
+
 launch-incus:
     #!/usr/bin/env bash
     image_file={{ base_dir }}/{{ image_name }}.img

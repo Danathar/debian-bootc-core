@@ -1,0 +1,29 @@
+# config.toml
+#
+# Passed to bootc-image-builder via `--config` (see `just build-disk-image`
+# and `just disk-image-from-ghcr` in the Justfile) to inject accounts into
+# the disk image at build time.
+#
+# Without this, the resulting image has no usable login: the base Debian
+# image ships with no root password set, so first boot leaves you unable
+# to sign in at all.
+#
+# Uncomment and edit the block below, then (re)build the disk image.
+#
+# WARNING: "changeme" is a placeholder, not a real password. Change it
+# before using the resulting image on anything but a throwaway VM, and
+# don't commit your real password back into this file.
+
+# [[customizations.user]]
+# name = "root"
+# password = "changeme"
+# # key = "ssh-ed25519 AAAA... you@example.com"  # optional: SSH public key
+
+# To create a normal admin user instead of (or alongside) enabling root,
+# add another block and put them in the "sudo" group:
+#
+# [[customizations.user]]
+# name = "myuser"
+# password = "changeme"
+# groups = ["sudo"]
+# # key = "ssh-ed25519 AAAA... you@example.com"
